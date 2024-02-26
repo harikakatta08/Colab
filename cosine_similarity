@@ -1,0 +1,91 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyNdXg8XGzeFrQ9BmX2v+17t",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/harikakatta08/Colab/blob/main/cosine_similarity\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 3,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "8hvquHIZy5FU",
+        "outputId": "e4b9dc67-2530-4e6b-ed04-4600f83ed2de"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "pearsons correlation 0.9999999999999998\n"
+          ]
+        }
+      ],
+      "source": [
+        "import numpy as np\n",
+        "def pearson_correlation(x,y):\n",
+        "  mean_x=np.mean(x)\n",
+        "  mean_y=np.mean(y)\n",
+        "  covariance=np.sum((x-mean_x)*(y-mean_y))\n",
+        "  std_dev_x=np.sqrt(np.sum((x-mean_x)**2))\n",
+        "  std_dev_y=np.sqrt(np.sum((y-mean_y)**2))\n",
+        "  correlation=covariance/(std_dev_x*std_dev_y)\n",
+        "  return correlation\n",
+        "x=np.array([1,2,3,4,5])\n",
+        "y=np.array([2,3,4,5,6])\n",
+        "print(\"pearsons correlation\",pearson_correlation(x,y))"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from sklearn.metrics.pairwise import cosine_similarity\n",
+        "vector1=np.array([1,2,3])\n",
+        "vector2=np.array([4,5,6])\n",
+        "cosine_sim=cosine_similarity(vector1.reshape(1,-1),vector2.reshape(1,-1))\n",
+        "print(\"cosine similarity\",cosine_sim[0][0])"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "JISSUAHH1Gs1",
+        "outputId": "7cf1b87c-f9f7-4d00-eeff-4f9546ee5f71"
+      },
+      "execution_count": 4,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "cosine similarity 0.9746318461970762\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
